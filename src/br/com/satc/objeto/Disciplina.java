@@ -5,36 +5,33 @@
  */
 package br.com.satc.objeto;
 
-import java.util.Date;
-
 /**
  *
  * @author gabriel.155317
  */
-public class Disciplina extends Aluno{
+public class Disciplina {
     
-    private String name,departamento;
+    private String nome,departamento;
     private char status;
 
-    public Disciplina(String name, String departamento, char status, int matricula, Date dataMatricula, int cargaHoraria, float valorHora, String nome, String rg, String cpf, Date dataNascimento) {
-        super(matricula, dataMatricula, cargaHoraria, valorHora, nome, rg, cpf, dataNascimento);
-        this.name = nome;
+    public Disciplina(String nome, String departamento, char status){
+        this.nome = nome;
         this.departamento = departamento;
         this.status = status;
     }
 
-
+ 
     @Override
     public String toString() {
-        return "Disciplina{" + "nome=" + name + ", departamento=" + departamento + ", status=" + status + '}';
+        return "Disciplina{" + "nome=" + nome + ", departamento=" + departamento + ", status=" + status + '}';
     }
 
         public String getNome() {
-        return name;
+        return nome;
     }
 
     public void setNome(String nome) {
-        this.name = nome;
+        this.nome = nome;
     }
 
     public String getDepartamento() {

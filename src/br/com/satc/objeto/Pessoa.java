@@ -23,20 +23,20 @@ public abstract class Pessoa {
         this.rg = rg;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
-        this.idade = calcularIdade(dataNascimento);
+        this.idade = idade;
     }
-        
+    
     @Override
     public String toString() {
         return "Pessoa{" + "nome=" + nome + ", rg=" + rg + ", cpf=" + cpf + ", dataNascimento=" + dataNascimento + ", idade=" + idade + '}';
     }
- 
-    public String getNome() {
+
+    public String getName() {
         return nome;
     }
-
-    public void setNome(String nome) {
-        this.nome = nome;
+    
+    public void setName(String name) {
+        this.nome = name;
     }
 
     public String getRg() {
