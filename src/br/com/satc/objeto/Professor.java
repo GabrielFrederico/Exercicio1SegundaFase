@@ -14,12 +14,12 @@ import java.util.Date;
  */
 public class Professor extends Pessoa{
     
-    private ArrayList<Disciplina> disciplinas;
+    private ArrayList<Disciplina> disciplinas = new ArrayList<>();
     private int cargaHoraria;
     private float valorHora,salario;
-    
-    public Professor(int cargaHoraria, float valorHora, String nome, String rg, String cpf, Date dataNascimento) {
-        super (nome, rg, cpf, dataNascimento, cargaHoraria);
+
+    public Professor(int cargaHoraria, float valorHora, float salario, String nome, String rg, String cpf, Date dataNascimento, int idade) {
+        super(nome, rg, cpf, dataNascimento, idade);
         this.cargaHoraria = cargaHoraria;
         this.valorHora = valorHora;
         this.salario = calcularSalario(cargaHoraria, valorHora);
@@ -62,7 +62,7 @@ public class Professor extends Pessoa{
         this.salario = salario;
     }
 
-    private float calcularSalario(int cargaHoraria, float valorHora) {
+    public static Float calcularSalario(int cargaHoraria, float valorHora) {
        return valorHora * cargaHoraria; 
     }
 

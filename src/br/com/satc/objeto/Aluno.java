@@ -14,14 +14,16 @@ import java.util.Date;
  */
 public class Aluno extends Pessoa{
     
-    private int matricula;
+    private String matricula;
     private Date dataMatricula;
     private ArrayList<Disciplina> disciplinas;
+    private int idade;
 
-    public Aluno(int matricula, Date dataMatricula, String nome, String rg, String cpf, Date dataNascimento, int idade) {
+    public Aluno(String matricula, Date dataMatricula, String nome, String rg, String cpf, Date dataNascimento, int idade) {
         super(nome, rg, cpf, dataNascimento, idade);
         this.matricula = matricula;
         this.dataMatricula = dataMatricula;
+        this.idade = calcularIdade(dataNascimento);
     }
     
     @Override
@@ -29,11 +31,11 @@ public class Aluno extends Pessoa{
         return "Aluno{" + "matricula=" + matricula + ", dataMatricula=" + dataMatricula + ", disciplinas=" + disciplinas + '}';
     }
 
-    public int getMatricula() {
+    public String getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(int matricula) {
+    public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
 
