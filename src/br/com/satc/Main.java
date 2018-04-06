@@ -6,6 +6,7 @@
 package br.com.satc;
 
 import br.com.satc.objeto.Aluno;
+import static br.com.satc.objeto.Aluno.calculaIdade;
 import br.com.satc.objeto.Disciplina;
 import br.com.satc.objeto.Professor;
 import static br.com.satc.objeto.Professor.calcularSalario;
@@ -47,9 +48,9 @@ public class Main {
                         String nome, departamento;
                         char status;
 
-                        nome = JOptionPane.showInputDialog("Informe o nome da disciplina: ");
+                        nome = JOptionPane.showInputDialog("Digite o nome da disciplina: ");
                         departamento = JOptionPane.showInputDialog("Qual o departamento? ");
-                        status = JOptionPane.showInputDialog("Status [A]tivo ou [I]nativo? ").charAt(0);
+                        status = JOptionPane.showInputDialog("Status [A]tivo ou [I]nativo? ").toUpperCase().charAt(0);
                         materias.add(new Disciplina(nome, departamento, status));
 
                     } while ((JOptionPane.showConfirmDialog(null, "Deseja continuar?")) == 0);
@@ -62,12 +63,12 @@ public class Main {
                         float valorHora, salario;
                         String nome, rg, cpf;
                         Date dataNascimento;
-
-                        cargaHoraria = Integer.parseInt(JOptionPane.showInputDialog("Informe a sua carga horária: "));
-                        valorHora = Float.parseFloat(JOptionPane.showInputDialog("Informe o valor por hora: "));
-                        nome = JOptionPane.showInputDialog("Informe o seu nome: ");
+                        
+                        nome = JOptionPane.showInputDialog("Digite o seu nome: ");
                         rg = JOptionPane.showInputDialog("Digite o seu RG: ");
                         cpf = JOptionPane.showInputDialog("Digite o seu CPF: ");
+                        cargaHoraria = Integer.parseInt(JOptionPane.showInputDialog("Digite a sua carga horária: "));
+                        valorHora = Float.parseFloat(JOptionPane.showInputDialog("Digite o valor por hora: "));
                         dataNascimento = sdf.parse(JOptionPane.showInputDialog("Digite a sua data de nascimento: "));
                         calcularSalario(cargaHoraria, valorHora);
                         salario = calcularSalario(cargaHoraria, valorHora);
@@ -79,9 +80,14 @@ public class Main {
                                 String disciplinasExistentes = "";
                                 for (Disciplina materia : materias) {
                                     disciplinasExistentes += "\n" + materias.indexOf(materia) + " " + materia.getNome();
-                                }
-                                int escolhaDisciplina = Integer.parseInt(JOptionPane.showInputDialog("Informe qual disciplina : \n" + disciplinasExistentes));
+                                
+                                int escolhaDisciplina = Integer.parseInt(JOptionPane.showInputDialog("Digite qual disciplina : \n" + disciplinasExistentes));
+                                if (escolhaDisciplina != materias.indexOf(materia)) {
+                                    JOptionPane.showMessageDialog(null, "Número não corresponde a uma disciplina!");
+                                }else
                                 prof.get(prof.size() - 1).getDisciplinas().add(materias.get(escolhaDisciplina));
+                                }
+                                
                             } while ((JOptionPane.showConfirmDialog(null, "Professor possui outra disciplina")) == 0);
                         }
                     } while ((JOptionPane.showConfirmDialog(null, "Deseja continuar?")) == 0);
@@ -98,11 +104,29 @@ public class Main {
                         nome = JOptionPane.showInputDialog("Digite o seu nome: ");
                         rg = JOptionPane.showInputDialog("Digite o seu RG: ");
                         cpf = JOptionPane.showInputDialog("Digite o seu CPF: ");
-                        matricula = JOptionPane.showInputDialog("Digite a sua matrícula: ");
-                        idade = Integer.parseInt(JOptionPane.showInputDialog("Digite a sua idade: "));
+                        matricula = JOptionPane.showInputDialog("Digite a sua matrícula: ");                        
                         dataNascimento = sdf.parse(JOptionPane.showInputDialog("Digite a sua data de nascimento: "));
                         dataMatricula = sdf.parse(JOptionPane.showInputDialog("Digite a sua data de matrícula: "));
+                        calculaIdade(dataNascimento);
+                        idade = calculaIdade(dataNascimento);
                         aluno.add(new Aluno(matricula, dataMatricula, nome, rg, cpf, dataNascimento, idade));
+                        
+                        if (JOptionPane.showConfirmDialog(null, "Aluno já cursa alguma disciplina?") == 0);
+                        {
+                            do {
+                                String disciplinasExistentes = "";
+                                for (Disciplina materia : materias) {
+                                    disciplinasExistentes += "\n" + materias.indexOf(materia) + " " + materia.getNome();
+                                
+                                int escolhaDisciplina = Integer.parseInt(JOptionPane.showInputDialog("Informe qual disciplina : \n" + disciplinasExistentes));
+                                if (escolhaDisciplina != materias.indexOf(materia)) {
+                                    JOptionPane.showMessageDialog(null, "Número não corresponde a uma disciplina!");
+                                }else
+                                aluno.get(aluno.size() - 1).getDisciplinas().add(materias.get(escolhaDisciplina));
+                                }
+                                
+                            } while ((JOptionPane.showConfirmDialog(null, "Aluno possui outra disciplina")) == 0);
+                        }
 
                     } while ((JOptionPane.showConfirmDialog(null, "Deseja continuar?")) == 0);
                     break;
@@ -120,7 +144,7 @@ public class Main {
                     break;
                 }
                 case 7: {
-                    JOptionPane.showMessageDialog(null, "Tchau !");
+                    JOptionPane.showMessageDialog(null, "Até a próxima !");
                 }
 
             }
